@@ -1,20 +1,30 @@
+.weekly-report-table {
+  background: white;
+}
+
+.area-head {
+  font-weight: bold;
+}
+
 .circle {
-  border: 2px solid rgba(49, 49, 4, 0.945);
+  // border: 2px solid rgba(49, 49, 4, 0.945);
   width: 20px;
   height: 20px;
   border-radius: 100%;
   cursor: pointer;
+  display: inline-block;
+  background: gray;
 }
 
-.download {
-  cursor: pointer;
-  background: #5ec361;
-  padding: 5px 10px;
-  text-decoration: none;
-  &:hover,&:active,&:focus,&:visited {
-    text-decoration: none;
-  }
-}
+// .download {
+//   cursor: pointer;
+//   background: #5ec361;
+//   padding: 5px 10px;
+//   text-decoration: none;
+//   &:hover,&:active,&:focus,&:visited {
+//     text-decoration: none;
+//   }
+// }
 
 .danger {
   background-color: red;
@@ -48,16 +58,17 @@
 
 .arrow {
   position: relative;
+  display: inline-block;
   font-size: 30px;
-  top: 30px;
-  left: 10px;
- 
-  background: transparent;
+  height: 30px;
+  top: 5px;
+  margin: 0 0 0 10px;
 
-  &:before,
-  &:after {
+  &:before, &:after {
     content: "";
     position: absolute;
+    top: 20px;
+    cursor: pointer;
   }
 
   &:before {
@@ -69,6 +80,7 @@
     -webkit-transform: translate(0, -0.5em) rotate(45deg);
     transform: translate(0, -0.5em) rotate(45deg);
     border-radius: 0 0px 0 0;
+    box-shadow: inset -8px 8px 0 0 gray;
   }
 
   &:after {
@@ -77,15 +89,7 @@
     height: 8px;
     -webkit-transform: translate(0, -0.1em);
     transform: translate(0, -9px);
-  }
-
-  &.success {
-    &:before {
-      box-shadow: inset -8px 8px 0 0 rgb(55, 192, 13);
-    }
-    &:after {
-      background-color: rgb(55, 192, 13);
-    }
+    background-color: gray;
   }
 
   &.neutral {
@@ -97,12 +101,29 @@
     }
   }
 
-  &.danger {
+  &.success {
+    transform: rotateZ(-45deg);
+    top: 15px;
     &:before {
-      box-shadow: inset -8px 8px 0 0 #e74c3c;
+      box-shadow: inset -8px 8px 0 0 green;
     }
     &:after {
-      background-color: #e74c3c;
+      background-color: green;
     }
   }
+
+  &.danger {
+    transform: rotateZ(45deg);
+    top: -10px;
+    &:before {
+      box-shadow: inset -8px 8px 0 0 red;
+    }
+    &:after {
+      background-color: red;
+    }
+  }
+}
+
+.button-container {
+  margin: 20px 0 0;
 }
