@@ -1,0 +1,91 @@
+.circle {
+  border: 2px solid rgba(49, 49, 4, 0.945);
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.danger {
+  background-color: red;
+}
+
+.neutral {
+  background-color: orange;
+}
+
+.success {
+  background-color: green;
+}
+
+
+.content-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    justify-content: center;
+    align-items: center;
+    /* align-content: center; */
+    margin: 0 auto;
+}
+
+.arrow {
+  position: relative;
+  font-size: 30px;
+  top: 30px;
+  left: 10px;
+ 
+  background: transparent;
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+  }
+
+  &:before {
+    left: 12px;
+    width: 20px;
+    height: 20px;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-transform: translate(0, -0.5em) rotate(45deg);
+    transform: translate(0, -0.5em) rotate(45deg);
+    border-radius: 0 0px 0 0;
+  }
+
+  &:after {
+    left: 0;
+    width: 25px;
+    height: 8px;
+    -webkit-transform: translate(0, -0.1em);
+    transform: translate(0, -9px);
+  }
+
+  &.success {
+    &:before {
+      box-shadow: inset -8px 8px 0 0 rgb(55, 192, 13);
+    }
+    &:after {
+      background-color: rgb(55, 192, 13);
+    }
+  }
+
+  &.neutral {
+    &:before {
+      box-shadow: inset -8px 8px 0 0 orange;
+    }
+    &:after {
+      background-color: orange;
+    }
+  }
+
+  &.danger {
+    &:before {
+      box-shadow: inset -8px 8px 0 0 #e74c3c;
+    }
+    &:after {
+      background-color: #e74c3c;
+    }
+  }
+}
