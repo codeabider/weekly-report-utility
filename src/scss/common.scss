@@ -6,6 +6,16 @@
   cursor: pointer;
 }
 
+.download {
+  cursor: pointer;
+  background: #5ec361;
+  padding: 5px 10px;
+  text-decoration: none;
+  &:hover,&:active,&:focus,&:visited {
+    text-decoration: none;
+  }
+}
+
 .danger {
   background-color: red;
 }
@@ -18,15 +28,14 @@
   background-color: green;
 }
 
-
 .content-wrapper{
+    height: 100vh;
     display: flex;
     flex-direction: column;
     width: 75%;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    /* align-content: center; */
-    margin: 0 auto;
+    margin: 50px auto;
 }
 
 .arrow {

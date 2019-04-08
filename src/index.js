@@ -1,31 +1,42 @@
-import "bootstrap";
-import "./scss/index.scss";
-import "datatables";
+import 'bootstrap';
+import './scss/index.scss';
+import 'datatables';
+import domtoimage from 'dom-to-image';
 
-var colorArray = new Array("danger", "neutral", "success");
+const colorArray = ['danger', 'neutral', 'success'];
 
-init();
-
-function init() {
+const init = function() {
   drawTable();
-  $(".circle").attr("index", -1);
-  $(".arrow").attr("index", -1);
-  attachClickHandler();
+  $('.circle').attr('index', -1);
+  $('.arrow').attr('index', -1);
+  attachMouseHandlers();
+};
+
+const attachMouseHandlers = function() {
+  $('.circle').on('click', clickHandler);
+  $('.download').on('click', downloadReport);
 }
 
-function attachClickHandler() {
-  $(".circle").on("click", clickHandler);
+const downloadReport = function() {
+  const node = document.getElementById('weekly-report');
+  domtoimage.toPng(node)
+  .then( (dataUrl) => {
+    $('.download').attr('href', dataUrl);
+  })
+  .catch( (error) => {
+      console.error('oops, something went wrong!', error);
+  });
 }
 
-function clickHandler(event) {
-  var index = $(event.target).attr("index");
-  $(event.target).attr("index", ++index);
+const clickHandler = function(event) {
+  let index = $(event.target).attr('index');
+  $(event.target).attr('index', ++index);
 
   if (index === colorArray.length - 1) {
-    $(event.target).attr("index", -1);
+    $(event.target).attr('index', -1);
   }
 
-  for (var i = 0; i < colorArray.length; i++) {
+  for (let i = 0; i < colorArray.length; i++) {
     if ($(event.target).hasClass(colorArray[i])) {
       $(event.target).removeClass(colorArray[i]);
     }
@@ -33,11 +44,13 @@ function clickHandler(event) {
   $(event.target).addClass(colorArray[index]);
 }
 
-function drawTable() {
-  $("table").dataTable({
+const drawTable = function() {
+  $('table').dataTable({
     bSort: false,
     bPaginate: false,
     bFilter: true,
     bInfo: false
   });
 }
+
+init();
