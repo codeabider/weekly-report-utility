@@ -1,59 +1,61 @@
-.weekly-report-table {
-  background: white;
-}
+
+$neutral-color: rgba(128, 128, 128, 1);
+$danger-color: rgba(255, 0, 0, 1);
+$safe-color: green;
+$rotation-angle: 45deg;
 
 .area-head {
   font-weight: bold;
 }
 
 .circle {
-  // border: 2px solid rgba(49, 49, 4, 0.945);
   width: 20px;
   height: 20px;
   border-radius: 100%;
   cursor: pointer;
   display: inline-block;
-  background: gray;
+  background: $neutral-color;
 }
 
-// .download {
-//   cursor: pointer;
-//   background: #5ec361;
-//   padding: 5px 10px;
-//   text-decoration: none;
-//   &:hover,&:active,&:focus,&:visited {
-//     text-decoration: none;
-//   }
-// }
-
 .danger {
-  background-color: red;
+  background-color: $danger-color;
 }
 
 .neutral {
-  background-color: orange;
+  background-color: $neutral-color;
 }
 
-.success {
-  background-color: green;
+.safe {
+  background-color: $safe-color;
 }
 
-.content-wrapper{
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    width: 75%;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 50px auto;
-    .weekly-report-table{
-      margin-bottom: 50px;
-      border-collapse: collapse;
-      border-spacing: 0px;
-      tr, td{
-        border: 1px solid black;
-      }
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 50px auto;
+  overflow: hidden;
+
+  .clone-container{
+    top: 1000px;
+    position: relative;
+  }
+  
+  .weekly-report-table {
+    background: white;
+    margin-bottom: 50px;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    tr, td{
+      border: 1px solid black;
     }
+  }
+
+  .button-container {
+    margin: 20px 0 0;
+  }    
 }
 
 .arrow {
@@ -63,6 +65,7 @@
   height: 30px;
   top: 5px;
   margin: 0 0 0 10px;
+  transition: .3s ease-in;
 
   &:before, &:after {
     content: "";
@@ -77,10 +80,10 @@
     height: 20px;
     -webkit-transform-origin: 50% 50%;
     transform-origin: 50% 50%;
-    -webkit-transform: translate(0, -0.5em) rotate(45deg);
-    transform: translate(0, -0.5em) rotate(45deg);
+    -webkit-transform: translate(0, -0.5em) rotate($rotation-angle);
+    transform: translate(0, -0.5em) rotate($rotation-angle);
     border-radius: 0 0px 0 0;
-    box-shadow: inset -8px 8px 0 0 gray;
+    box-shadow: inset -8px 8px 0 0 $neutral-color;
   }
 
   &:after {
@@ -89,41 +92,37 @@
     height: 8px;
     -webkit-transform: translate(0, -0.1em);
     transform: translate(0, -9px);
-    background-color: gray;
+    background-color: $neutral-color;
   }
 
   &.neutral {
     &:before {
-      box-shadow: inset -8px 8px 0 0 orange;
+      box-shadow: inset -8px 8px 0 0 $neutral-color;
     }
     &:after {
-      background-color: orange;
+      background-color: $neutral-color;
     }
   }
 
-  &.success {
-    transform: rotateZ(-45deg);
+  &.safe {
+    transform: rotateZ(-$rotation-angle);
     top: 15px;
     &:before {
-      box-shadow: inset -8px 8px 0 0 green;
+      box-shadow: inset -8px 8px 0 0 $safe-color;
     }
     &:after {
-      background-color: green;
+      background-color: $safe-color;
     }
   }
 
   &.danger {
-    transform: rotateZ(45deg);
+    transform: rotateZ($rotation-angle);
     top: -10px;
     &:before {
-      box-shadow: inset -8px 8px 0 0 red;
+      box-shadow: inset -8px 8px 0 0 $danger-color;
     }
     &:after {
-      background-color: red;
+      background-color: $danger-color;
     }
   }
-}
-
-.button-container {
-  margin: 20px 0 0;
 }
