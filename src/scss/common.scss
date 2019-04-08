@@ -36,6 +36,14 @@
     justify-content: flex-start;
     align-items: center;
     margin: 50px auto;
+    .weekly-report-table{
+      margin-bottom: 50px;
+      border-collapse: collapse;
+      border-spacing: 0px;
+      tr, td{
+        border: 1px solid black;
+      }
+    }
 }
 
 .arrow {

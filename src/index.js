@@ -1,6 +1,6 @@
 import 'bootstrap';
 import './scss/index.scss';
-import 'datatables';
+import 'datatables.net';
 import domtoimage from 'dom-to-image';
 
 const colorArray = ['danger', 'neutral', 'success'];
@@ -48,7 +48,7 @@ const drawTable = function() {
   $('table').dataTable({
     bSort: false,
     bPaginate: false,
-    bFilter: true,
+    bFilter: false,
     bInfo: false
   });
 }
