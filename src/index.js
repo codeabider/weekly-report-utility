@@ -31,17 +31,42 @@ const attachMouseHandlers = function() {
 // }
 
 const downloadReport = function() {
-  const node = document.getElementById('weekly-report');
-  domtoimage.toPng(node)
-  .then(function (dataUrl) {
-      const downloadAnchor = document.createElement('a');
+  const progressReport = $('.weekly-report-table').clone();
+  const regressReport = $('.weekly-report-table').clone();
 
-      downloadAnchor.href = dataUrl;
-      downloadAnchor.download = 'report';
-      downloadAnchor.click();
-  })
-  .catch(function (error) {
-      console.error('oops, something went wrong!', error);
+  progressReport.attr('id', 'progress-report');
+  regressReport.attr('id', 'regress-report');
+
+  progressReport.appendTo('.content-wrapper');
+  regressReport.appendTo('.content-wrapper');
+
+  showProgress();
+  showRegress();
+
+  const nodes = [
+    document.getElementById('weekly-report'),
+    document.getElementById('progress-report'),
+    document.getElementById('regress-report')
+  ];
+
+  nodes.forEach(function(val, index) {
+    domtoimage.toPng(nodes[index])
+    .then(function (dataUrl) {
+        const downloadAnchor = document.createElement('a');
+  
+        downloadAnchor.href = dataUrl;
+        downloadAnchor.download = nodes[index].id;
+        downloadAnchor.click();
+
+        if (nodes[index].id === 'progress-report') {
+          $('#progress-report').remove();
+        } else if (nodes[index].id === 'regress-report') {
+          $('#regress-report').remove();
+        }
+    })
+    .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+    });
   });
 }
 
@@ -71,11 +96,15 @@ const drawTable = function() {
 }
 
 const showProgress = function() {
-  console.log($('.indicator.success').length);
+  // console.log($('.indicator.success').length);
+  $('#progress-report').find('.indicator.neutral').removeClass('neutral');
+  $('#progress-report').find('.indicator.danger').removeClass('danger');
 }
 
 const showRegress = function() {
-  console.log($('.indicator.danger').length);
+  // console.log($('.indicator.danger').length);
+  $('#regress-report').find('.indicator.neutral').removeClass('neutral');
+  $('#regress-report').find('.indicator.success').removeClass('success');
 }
 
 const showAll = function() {
