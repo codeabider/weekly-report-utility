@@ -43,7 +43,7 @@ $rotation-angle: 45deg;
   }
 
   .report-head {
-    margin: 0 0 20px;
+    margin: 0 0 25px;
   }
   
   .weekly-report-table {
@@ -51,8 +51,17 @@ $rotation-angle: 45deg;
     margin: 0 0 30px;
     border-collapse: collapse;
     border-spacing: 0px;
-    tr, td{
+    tr, td {
       border: 1px solid black;
+    }
+
+    th.indicator-cell {
+      padding-right: 20px;
+    }
+
+    .indicator-cell {
+      text-align: center;
+      padding-right: 40px;
     }
   }
 }
