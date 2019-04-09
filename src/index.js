@@ -91,7 +91,8 @@ import domtoimage from 'dom-to-image';
   }
 
   const buildReports = () => {
-    $('#progress-report, #regress-report').find('.indicator.neutral').removeClass('neutral');
+    $('#progress-report, #regress-report')
+      .find('.indicator.neutral').removeClass('neutral');
     $('#progress-report').find('.indicator.danger').removeClass('danger');
     $('#regress-report').find('.indicator.safe').removeClass('safe');
   }

@@ -1,6 +1,8 @@
 $neutral-color: rgb(182, 182, 182);
-$danger-color: rgba(255, 0, 0, 1);
+$danger-color: rgb(255, 0, 0);
 $safe-color: rgb(0, 128, 0);
+$white: rgb(255, 255, 255);
+$black: rgb(0, 0, 0);
 $rotation-angle: 45deg;
 
 .area-head {
@@ -47,12 +49,12 @@ $rotation-angle: 45deg;
   }
   
   .weekly-report-table {
-    background: white;
+    background: $white;
     margin: 0 0 30px;
     border-collapse: collapse;
     border-spacing: 0px;
     tr, td {
-      border: 1px solid black;
+      border: 1px solid $black;
     }
 
     th.indicator-cell {
