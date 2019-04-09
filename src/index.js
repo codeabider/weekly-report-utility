@@ -73,20 +73,21 @@ import domtoimage from 'dom-to-image';
   }
 
   const drawTable = () => {
-    const numCols = $('table th').length;
+    const columns = [null];
+    $('table th').toArray().forEach((val, i, arr) => {
+      if (i !== 0) {
+        columns.push({
+          'width': (100 / arr.length) + '%'
+        });
+      }
+    });
 
     $('table').dataTable({
       'bSort': false,
       'bPaginate': false,
       'bFilter': false,
       'bInfo': false,
-      'columns': [
-        null,
-        { 'width': 100 / numCols + '%' },
-        { 'width': 100 / numCols + '%' },
-        { 'width': 100 / numCols + '%' },
-        { 'width': 100 / numCols + '%' }
-      ]
+      columns
     });
   }
 
