@@ -73,11 +73,20 @@ import domtoimage from 'dom-to-image';
   }
 
   const drawTable = () => {
+    const numCols = $('table th').length;
+
     $('table').dataTable({
-      bSort: false,
-      bPaginate: false,
-      bFilter: false,
-      bInfo: false
+      'bSort': false,
+      'bPaginate': false,
+      'bFilter': false,
+      'bInfo': false,
+      'columns': [
+        null,
+        { 'width': 100 / numCols + '%' },
+        { 'width': 100 / numCols + '%' },
+        { 'width': 100 / numCols + '%' },
+        { 'width': 100 / numCols + '%' }
+      ]
     });
   }
 
