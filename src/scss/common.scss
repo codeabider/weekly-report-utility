@@ -5,6 +5,15 @@ $white: rgb(255, 255, 255);
 $black: rgb(0, 0, 0);
 $rotation-angle: 45deg;
 
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url(../fonts/Montserrat-Light.otf);
+}
+
 .area-head {
   font-weight: bold;
 }
@@ -30,6 +39,10 @@ $rotation-angle: 45deg;
   background-color: $safe-color;
 }
 
+.opaque {
+  opacity: .3;
+}
+
 .content-wrapper {
   display: flex;
   flex-direction: column;
@@ -49,13 +62,13 @@ $rotation-angle: 45deg;
   }
   
   .weekly-report-table {
-    background: $white;
     margin: 0 0 30px;
     border-collapse: collapse;
     border-spacing: 0px;
 
     tr, td, th {
       border: 1px solid $black;
+      background: transparent;
     }
 
     th.indicator-cell {

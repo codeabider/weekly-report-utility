@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import 'bootstrap';
 import './scss/index.scss';
 import 'datatables.net';
@@ -92,10 +93,13 @@ import domtoimage from 'dom-to-image';
   }
 
   const buildReports = () => {
-    $('#progress-report, #regress-report')
-      .find('.indicator.neutral').removeClass('neutral');
+    $('#progress-report, #regress-report').find('.indicator').addClass('opaque');
+
     $('#progress-report').find('.indicator.danger').removeClass('danger');
+    $('#progress-report').find('.indicator.safe').removeClass('opaque');
+
     $('#regress-report').find('.indicator.safe').removeClass('safe');
+    $('#regress-report').find('.indicator.danger').removeClass('opaque');
   }
 
   init();
