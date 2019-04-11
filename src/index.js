@@ -3,6 +3,7 @@ import 'bootstrap';
 import './scss/index.scss';
 import 'datatables.net';
 import domtoimage from 'dom-to-image';
+import {saveAs} from 'file-saver';
 
 (() => {
   const colorArray = ['safe', 'danger', 'neutral'];
@@ -16,7 +17,7 @@ import domtoimage from 'dom-to-image';
   const attachMouseHandlers = () => {
     $('.indicator').on('click', clickHandler);
     $('.download').on('click', downloadReport);
-  }
+  };
 
   const downloadReport = () => {
     const progressReport = $('#weekly-report').clone();
@@ -37,24 +38,21 @@ import domtoimage from 'dom-to-image';
     ];
 
     nodes.forEach((val, index) => {
-      domtoimage.toPng(nodes[index])
-      .then((dataUrl) => {
-          const downloadAnchor = document.createElement('a');
-          downloadAnchor.href = dataUrl;
-          downloadAnchor.download = nodes[index].id;
-          downloadAnchor.click();
-
+      domtoimage
+        .toPng(nodes[index])
+        .then((dataUrl) => {
+          saveAs(dataUrl, nodes[index].id);
           if (nodes[index].id === 'progress-report') {
             progressReport.remove();
           } else if (nodes[index].id === 'regress-report') {
             regressReport.remove();
           }
-      })
-      .catch((error) => {
+        })
+        .catch((error) => {
           console.error('oops, something went wrong!', error);
-      });
+        });
     });
-  }
+  };
 
   const clickHandler = (event) => {
     let index = $(event.target).attr('index');
@@ -71,36 +69,48 @@ import domtoimage from 'dom-to-image';
     });
 
     $(event.target).addClass(colorArray[index]);
-  }
+  };
 
   const drawTable = () => {
     const columns = [null];
-    $('table th').toArray().forEach((val, i, arr) => {
-      if (i !== 0) {
-        columns.push({
-          'width': (100 / arr.length) + '%'
-        });
-      }
-    });
+    $('table th')
+      .toArray()
+      .forEach((val, i, arr) => {
+        if (i !== 0) {
+          columns.push({
+            width: 100 / arr.length + '%'
+          });
+        }
+      });
 
     $('table').dataTable({
-      'bSort': false,
-      'bPaginate': false,
-      'bFilter': false,
-      'bInfo': false,
+      bSort: false,
+      bPaginate: false,
+      bFilter: false,
+      bInfo: false,
       columns
     });
-  }
+  };
 
   const buildReports = () => {
-    $('#progress-report, #regress-report').find('.indicator').addClass('opaque');
+    $('#progress-report, #regress-report')
+      .find('.indicator')
+      .addClass('opaque');
 
-    $('#progress-report').find('.indicator.danger').removeClass('danger');
-    $('#progress-report').find('.indicator.safe').removeClass('opaque');
+    $('#progress-report')
+      .find('.indicator.danger')
+      .removeClass('danger');
+    $('#progress-report')
+      .find('.indicator.safe')
+      .removeClass('opaque');
 
-    $('#regress-report').find('.indicator.safe').removeClass('safe');
-    $('#regress-report').find('.indicator.danger').removeClass('opaque');
-  }
+    $('#regress-report')
+      .find('.indicator.safe')
+      .removeClass('safe');
+    $('#regress-report')
+      .find('.indicator.danger')
+      .removeClass('opaque');
+  };
 
   init();
 })();
