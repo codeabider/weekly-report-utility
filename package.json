@@ -6,6 +6,7 @@
   "author": "",
   "license": "",
   "scripts": {
+    "start": "node server.js",
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --progress --open --mode development --config webpack.config.js",
     "build": "webpack -p --progress --mode production --config webpack.config.js",
     "postinstall": "npm run build"
