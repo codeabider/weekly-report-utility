@@ -39,7 +39,7 @@ import {saveAs} from 'file-saver';
 
     nodes.forEach((val, index) => {
       domtoimage
-        .toPng(nodes[index])
+        .toBlob(nodes[index])
         .then((dataUrl) => {
           saveAs(dataUrl, nodes[index].id);
           if (nodes[index].id === 'progress-report') {
